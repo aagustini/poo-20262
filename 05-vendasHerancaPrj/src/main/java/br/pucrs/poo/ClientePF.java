@@ -15,11 +15,16 @@ public class ClientePF extends Cliente {
   public String toString() {
     // ficou feio...
     //return super.getCodigo() + super.getNome() + "[cpf=" + cpf + "]";
-    
+
     // reutilizando o toString da Classe Cliente
     return super.toString() + " [cpf = " + cpf + "]";
   }
 
+    @Override
+    public String getID() {
+     return this.cpf;
+    }
 
-  
+
+
 }

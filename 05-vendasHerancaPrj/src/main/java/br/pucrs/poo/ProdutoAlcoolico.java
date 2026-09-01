@@ -1,0 +1,28 @@
+package br.pucrs.poo;
+
+public class ProdutoAlcoolico extends Produto {
+
+    private double impostoBebum;
+
+    public ProdutoAlcoolico(int umCodigo, String umNome, double umPreco) {
+        super(umCodigo, umNome, umPreco);
+        this.impostoBebum = 1.5;
+    }
+
+    @Override
+    public double getPreco() {
+        double taxaBebum = super.getPreco() * impostoBebum;
+
+        return super.getPreco() + taxaBebum;
+    }
+
+    @Override
+    public String toString() {
+
+        return String.format("%s - Imposto extra: %.0f%%",
+                    super.toString(),
+                    this.impostoBebum * 100);
+
+    }
+
+}

@@ -16,6 +16,11 @@ public class ClientePJ extends Cliente {
     return super.toString() + " [cnpj = " + cnpj + "]";
   }
 
+  @Override
+  public String getID() {
+    return this.cnpj;
+    }
 
-  
+
+
 }

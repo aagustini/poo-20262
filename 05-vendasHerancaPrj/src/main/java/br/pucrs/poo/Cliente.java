@@ -14,6 +14,9 @@ public abstract class Cliente {
         this.nome = "Não informado";
 
     }
+
+    public abstract String getID();
+
     public String getNome() {
         return nome;
     }
@@ -30,8 +33,8 @@ public abstract class Cliente {
          * ", nome='" + nome + '\'' +
          * '}';
          */
-        
+
         return String.format("(%d) \t %s", codigo, nome);
-            }
+    }
 
 }

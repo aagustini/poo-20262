@@ -43,8 +43,18 @@ public class CadastroClientes {
         return null;
     }
 
-    // public Cliente pesquisar(String cod) {
-    // for (Cliente cli : lista) {
+    public Cliente pesquisar(String id) {
+        for (Cliente cli : lista) {
+            if (cli.getID().compareTo(id) == 0) {
+                return cli;
+            }
+        }
+        return null;
+    }
+
+
+
+        // for (Cliente cli : lista) {
 
     // // ruim!!!
     // // if (cli instanceof ClientePF) {
@@ -58,8 +68,8 @@ public class CadastroClientes {
     // return cli;
 
     // }
-    // return null;
-    // }
+    //   return null;
+    //}
 
     public String toString() {
         /*

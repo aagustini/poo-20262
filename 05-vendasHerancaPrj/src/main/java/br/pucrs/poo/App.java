@@ -1,104 +1,104 @@
 package br.pucrs.poo;
 
 public class App {
-
     public static void main(String[] args) {
-        // teste de criação de clientes
-        Cliente c1;
-        c1 = new ClientePF(123, "Sr. Smith","3.3-3");
-        Cliente c2 = new ClientePJ(321, "John Doe Inc", "1\001-1");
-        //System.out.println();
-        //System.out.println(c1.toString());
-        //System.out.println("c2: " + c2.getCodigo() + " " + c2.getNome());
-        //System.out.println();
+        Produto p1 = new Produto(123,"Lapis", 2.5);
+        System.out.println(p1);
+
+        // para usar o cadastro de produtos temos de "pegar" a instancia
+        CadastroProdutos cadProdutos = CadastroProdutos.getInstance();
+
+
+
+        cadProdutos.inserir(123, "Lapis", 2.5);
+        cadProdutos.inserir(124, "Caneta", 5);
+        cadProdutos.inserir(125, "Borracha", 4.5);
+
+        System.out.println("\n");
+        System.out.println(cadProdutos.toString());
+        System.out.println();
+
+        Produto p = cadProdutos.pesquisar(123);
+        if ( p != null) {
+            System.out.println("\nAchou: "+p.toString());
+            // testando a classe ItemVenda
+            // só para teste, esta classe só "existe"
+            //     dentro da classe Venda
+            ItemVenda iv1 = new ItemVenda(10, p);
+            System.out.println("ItemVenda: " + iv1.toString());
+
+
+        } else {
+            System.out.println("\nProduto 123 não está no cadastro");
+        }
+
+        p = cadProdutos.pesquisar(200);
+        if ( p != null) {
+            System.out.println("\nAchou: "+p.toString());
+        } else {
+            System.out.println("\nProduto 200 não está no cadastro");
+        }
+
+        Cliente cli1 = new Estudante(1,
+                                     "Huguinho",
+                                    "111-11",
+                                    "PUCRS");
+        System.out.println("\n");
+        Venda venda1 = new Venda(cli1);
+        venda1.inserir(10, cadProdutos.pesquisar(123));
+        venda1.inserir(2, cadProdutos.pesquisar(125));
+        venda1.inserir(cadProdutos.pesquisar(124));
+
+        System.out.println(venda1.getNotaFiscal());
+
+        ProdutoEE pEE = new ProdutoEE(323,"Ferro de passar", 200, 180);
+        System.out.println("\n\n"+ pEE);
+
+        ProdutoAlcoolico pA = new ProdutoAlcoolico(523,"Korote", 10);
+        System.out.println("\n\n" + pA);
+
+        System.out.println("\nValor de uma Korote: R$ " + pA.getPreco());
+
+        cadProdutos.inserir(pEE);
+        cadProdutos.inserir(pA);
+
+
+        System.out.println("\n- - - Cadastro de produtos - - -\n");
+        System.out.println(cadProdutos.toString());
+
+        Cliente cli2 = new ClientePJ(2,"Biscoitos do Zé","222/0002-2");
+        System.out.println("\n");
+        Venda venda2 = new Venda(cli2);
+        venda2.inserir(20, cadProdutos.pesquisar(123));
+        venda2.inserir(10, cadProdutos.pesquisar(523));
+        venda2.inserir(cadProdutos.pesquisar(323));
+
+        System.out.println(venda2.getNotaFiscal());
+
+        // erro - não posso dar new em classes abstratas
+        //Cliente cli3 = new Cliente(3,"John Doe");
 
         CadastroClientes cadCli = CadastroClientes.getInstance();
-        cadCli.inserir(c1);
-        cadCli.inserir(c2);
+        cadCli.inserir(cli1);
+        cadCli.inserir(cli2);
+        cadCli.inserir(new ClientePF(3, "huginho", "333-33"));
+        cadCli.inserir(new ClientePJ(4, "Patinhas inc", "444/0004"));
 
-        Cliente cliPF = new ClientePF(200, "Sra. Smith", "1.1-1");
+        System.out.println(cadCli.toString());
 
-        cadCli.inserir(cliPF);
-        cadCli.inserir( new Estudante(201, "Huguinho", "2.2-2", "PUCRS"));
+        Cliente c = cadCli.pesquisar("111-11");
 
-       // System.out.println("pf nome: "+cliPF.getNome());
-       // System.out.println("pf cpf: "+cliPF.getCPF());
-       // System.out.println("pf tostr: "+cliPF.toString());
-       // System.out.println();
+        System.out.println("\n\nresultado da pesquisa 1:");
+        System.out.println( c.toString() );
 
+        Cliente c2 = cadCli.pesquisar("444/0004");
 
-        //CadastroClientes outroCad = CadastroClientes.getInstance();
-        System.out.println(cadCli);
+        System.out.println("\n\nresultado da pesquisa 2:");
+        System.out.println( c2.toString() );
 
-        CadastroProdutos cadProd = CadastroProdutos.getInstance();
-
-        // teste de criação de clientes
-        Produto p1 = new Produto(1, "caneta azul", 2);
-        Produto p2 = new Produto(2, "borracha", 1.5);
-        Produto p3 = new Produto(3, "lápis", 1);
-        Produto p4 = new Produto(4, "Chocolate", 10);
-
-        //System.out.println(p1.toString());
-        //System.out.println(p4);
-
-        cadProd.inserir(1, "caneta azul", 2);
-        cadProd.inserir(2, "borracha", 1.5);
-        cadProd.inserir(3, "lápis", 1);
-        cadProd.inserir(4, "Chocolate", 10);
-
-        System.out.println(cadProd.toString());
-
-        // teste de criação de clientes não faz sentido criar itens venda sem vendas...
-        // ItemVenda i1 = new ItemVenda(3, p4);
-        // ItemVenda i2 = new ItemVenda(5, p1);
-
-        // System.out.println();
-        // System.out.println(i1);
-        // System.out.println(i2);
-
-        // testar a classe venda...
-        // Cliente c1 = cadCli.pesquisar(123);
-        // if (c1 = null)
-        // System.out.println("cliente nao existe...");
-
-        Venda v1 = new Venda(cadCli.pesquisar(321));
-        // Venda v1 = new Venda( c1 );
-        v1.inserir(p1);
-        v1.inserir(10, p2);
-
-        v1.inserir(cadProd.pesquisar(1));
-        v1.inserir(10, cadProd.pesquisar(4));
-
-        System.out.println();
-        System.out.println(v1.getNotaFiscal());
-        
-        Venda v2 = new Venda(cadCli.pesquisar(201));
-
-        v2.inserir(cadProd.pesquisar(2));
-        v2.inserir(5, cadProd.pesquisar(3));
-
-        System.out.println(v2.getNotaFiscal());
-
-        Venda v3 = new Venda(cadCli.pesquisar(200));
-
-        v3.inserir(cadProd.pesquisar(4));
-
-        System.out.println(v3.getNotaFiscal());
-
-        System.out.println("\n\nPróxima venda será a de número: " +
-                Venda.getProxNF());
-
-        // System.out.println("\n\n");
-
-        // Venda v1 = new Venda(c1);
-
-        // v1.inserir(p4);
-        // // System.out.println( "valor (parcial) da venda v1: " +v1.valorTotal());
-        // v1.inserir(7, p1);
-        // // System.out.println( "valor (parcial) da venda v1: " +v1.valorTotal());
-
-        // System.out.println("\n\n");
-        // System.out.println(v1.getNotaFiscal());
+        System.out.println("\n\nPróxima venda será nro: " +
+                            Venda.getProxNF());
 
     }
+
 }

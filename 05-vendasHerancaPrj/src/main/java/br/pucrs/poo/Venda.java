@@ -32,6 +32,8 @@ public class Venda {
     public String getNotaFiscal() {
         double total = 0;
         StringBuilder nota = new StringBuilder("Exercício POO 2026/2\t");
+        StringBuilder garantias = new StringBuilder();
+
         nota.append(LocalDateTime.now().toLocalDate() + "\t");
         nota.append("NF nro: " + this.nroNF + "\n");
 
@@ -46,10 +48,19 @@ public class Venda {
             nota.append(item.getDetalhe() + "\n");
             // nota.append("\n");
             total = total + item.getValor();
+
+             if (item.getProduto() instanceof ProdutoEE) {
+                ProdutoEE pee = (ProdutoEE) item.getProduto();
+                garantias.append(pee.getGarantia());
+                garantias.append("\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n");
+            }
         }
 
+
+        nota.append(String.format("\n     \t\t\t\t    Total: R$ %6.2f\n\n", total));
         nota.append("- - - - - - - - - - - - - - - - - - - - - - - - - -\n");
-        nota.append(String.format("     \t\t\t\t    Total: R$ %6.2f\n\n", total));
+
+        nota.append(garantias.toString());
         return nota.toString();
     }
 

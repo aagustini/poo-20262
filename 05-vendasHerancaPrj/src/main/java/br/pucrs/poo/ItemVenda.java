@@ -19,6 +19,8 @@ public class ItemVenda {
                 prod.getPreco(), this.getValor());
     }
 
+    public Produto getProduto() { return prod; }
+
     @Override
     public String toString() {
         return "ItemVenda [quantidade=" + quantidade + ", prod=" + prod + "]";
