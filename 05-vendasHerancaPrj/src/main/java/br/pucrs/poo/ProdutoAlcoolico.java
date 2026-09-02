@@ -2,11 +2,15 @@ package br.pucrs.poo;
 
 public class ProdutoAlcoolico extends Produto {
 
-    private double impostoBebum;
+    // static - um valor de importo único para todos produtos
+    // deveriamos ter...
+    // public static double getTaxaAlcool() {}
+    // public static void setTaxaAlcool(double novaTaxa)
+    // para permitir atualizar a taxa de imposto
+    private static double impostoBebum = 5; // 500%
 
     public ProdutoAlcoolico(int umCodigo, String umNome, double umPreco) {
         super(umCodigo, umNome, umPreco);
-        this.impostoBebum = 1.5;
     }
 
     @Override
@@ -20,8 +24,8 @@ public class ProdutoAlcoolico extends Produto {
     public String toString() {
 
         return String.format("%s - Imposto extra: %.0f%%",
-                    super.toString(),
-                    this.impostoBebum * 100);
+                super.toString(),
+                this.impostoBebum * 100);
 
     }
 

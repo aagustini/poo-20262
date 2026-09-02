@@ -40,7 +40,7 @@ public class ProdutoEE extends Produto {
     public String toString() {
 
         // pode ser assim, mas fica feio e ineficiente...
-        // return "("+codigo+") \t "+nome+" \t R$ "+preco;
+        // return "("+getCodigo()+") \t "+getNome()+" \t R$ "+getPreco();
 
         // posso fazer assim, mas não parece bom...
         // return String.format("(%d) \t %s \t R$ %.2f - Garantia %d dias",
