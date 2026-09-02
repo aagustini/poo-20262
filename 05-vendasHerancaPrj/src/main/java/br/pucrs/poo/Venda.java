@@ -49,13 +49,15 @@ public class Venda {
             // nota.append("\n");
             total = total + item.getValor();
 
-             if (item.getProduto() instanceof ProdutoEE) {
-                ProdutoEE pee = (ProdutoEE) item.getProduto();
+            // if (item.getProduto() instanceof ProdutoEE) {
+            // ProdutoEE pee = (ProdutoEE) item.getProduto();
+
+            // usando pattern matching do instanceof ...
+            if (item.getProduto() instanceof ProdutoEE pee) {
                 garantias.append(pee.getGarantia());
                 garantias.append("\n- - - - - - - - - - - - - - - - - - - - - - - - - -\n");
             }
         }
-
 
         nota.append(String.format("\n     \t\t\t\t    Total: R$ %6.2f\n\n", total));
         nota.append("- - - - - - - - - - - - - - - - - - - - - - - - - -\n");
