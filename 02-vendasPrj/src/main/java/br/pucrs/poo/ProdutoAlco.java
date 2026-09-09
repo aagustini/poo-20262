@@ -12,7 +12,7 @@ public class ProdutoAlco extends Produto{
     }
 
     public void setTaxa(double novaTaxa){
-        this.taxa = novaTaxa;
+        ProdutoAlco.taxa = novaTaxa;
     }
 
     @Override
